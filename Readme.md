@@ -1,3 +1,6 @@
+## U-22 プログラミングコンテスト提出コードです
+- サイトURL: https://u22procon.com/
+
 ## 使い方
 - npm install
     - 初回のみ 
@@ -10,11 +13,10 @@
 
 
 ## 開発環境
-- MacBook Pro
-    - OS: Sonoma 14.5
+- 端末: MacBook Pro (Apple M1 Pro チップ)
 
-- チップ: Apple M1 Pro
+- OS: macOS Sonoma 14.5
 
-- node: v22.15.1
+- Node.js: v22.15.1
 
 - npm: 10.9.2
