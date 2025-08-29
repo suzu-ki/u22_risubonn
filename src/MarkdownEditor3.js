@@ -38,9 +38,9 @@ const MarkdownEditor3 = ({ value, onChange }) => {
       const doc = cm.getDoc();
       const cursor = doc.getCursor();
       const tableTemplate =
-        `| 内容 | 期日 | 進捗(%) | 備考欄 |\n` +
-        `| ---- | ---- | ------- | ------ |\n` +
-        `|      |      |         |        |\n`;
+        `| 列1 | 列2 | 列3 | 列4 |\n` +
+        `| ---- | ---- | ---- | ---- |\n` +
+        `|      |      |      |      |\n`;
       doc.replaceRange(tableTemplate, cursor);
       cm.focus();
     },

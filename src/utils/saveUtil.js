@@ -68,35 +68,65 @@ export async function saveMarkdownToFile3(groupedByTag) {
   }
 }
 
+// export async function saveMarkdownToFile4(groupedByTag) {
+//   let combined = "";
+
+//   for (const [tag, subtagObj] of Object.entries(groupedByTag)) {
+//     combined += `# Tag: ${tag} << \n\n`;
+//     combined += `---------------\n`;
+//     for (const [subtag, texts] of Object.entries(subtagObj)) {
+//       combined += `##  SubTag: ${subtag}<<< \n`;
+//       texts.forEach((text) => {
+//         // インデントを入れて箇条書き表示
+//         // combined += `  - ${text.replace(/\n/g, '\n    ')}\n`;
+//         combined += texts.join("\n\n") + "\n\n";
+//       });
+//       combined += "\n";
+//     }
+//   }
+
+//   const now = new Date();
+//   const yyyy = now.getFullYear();
+//   const mm = String(now.getMonth() + 1).padStart(2, "0");
+//   const dd = String(now.getDate()).padStart(2, "0");
+//   const dateStr = `${yyyy}-${mm}-${dd}`;
+//   const mdfilename = `${dateStr}.md`;
+
+//   try {
+//     const savedPath = await window.electronAPI.saveFile3("diary", mdfilename, combined);
+//     console.log("日報として保存しました:", savedPath);
+//   } catch (err) {
+//     console.error("保存エラー:", err);
+//   }
+// }
+
 export async function saveMarkdownToFile4(groupedByTag) {
   let combined = "";
 
   for (const [tag, subtagObj] of Object.entries(groupedByTag)) {
-    combined += `# Tag: ${tag} << \n\n`;
-    combined += `---------------\n`;
+    combined += `# >> Tag: ${tag}\n\n`;
+    combined += `---------------\n\n`;
+
     for (const [subtag, texts] of Object.entries(subtagObj)) {
-      combined += `##  SubTag: ${subtag}<<< \n`;
+      combined += `## >>> SubTag: ${subtag}\n\n`;
+
       texts.forEach((text) => {
-        // インデントを入れて箇条書き表示
-        // combined += `  - ${text.replace(/\n/g, '\n    ')}\n`;
-        combined += texts.join("\n\n") + "\n\n";
+        // 箇条書き + インデント整形
+        combined += `- ${text.replace(/\n/g, '\n  ')}\n`;
       });
-      combined += "\n";
+
+      combined += `\n`; // サブタグごとに区切り
     }
   }
 
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, "0");
-  const dd = String(now.getDate()).padStart(2, "0");
-  const dateStr = `${yyyy}-${mm}-${dd}`;
-  const mdfilename = `${dateStr}.md`;
-
-  try {
-    const savedPath = await window.electronAPI.saveFile3("diary", mdfilename, combined);
-    console.log("日報として保存しました:", savedPath);
-  } catch (err) {
-    console.error("保存エラー:", err);
-  }
+  // ファイル保存部分は既存処理を流用
+  const blob = new Blob([combined], { type: "text/markdown" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "summary.md";
+  a.click();
+  URL.revokeObjectURL(url);
 }
+
 

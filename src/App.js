@@ -207,28 +207,6 @@ const App = () => {
   }, {});
 
 
-  // const handleSave = () => {
-  //   let combined = "";
-  //   for (const [tag, texts] of Object.entries(groupedByTag)) {
-  //     combined += `## ${tag}\n\n`;
-  //     combined += texts.join("\n\n") + "\n\n";
-  //   }
-  //   saveHtmlLocally2(combined);
-  // };
-
-  // LLMからの推薦タスクを受け取るハンドラ
-
-  // ユーザーが推薦タスクを採用するかどうかを処理
-
-  // ポップアップ表示のロジック（例：サブタスク完了時）
-  // 例えば、TaskTableコンポーネントでサブタスクの完了状態が変更されたことを
-  // App.jsに通知するコールバック関数を渡すことで、ここでポップアップを制御できます。
-  // const handleSubtaskCompletion = () => {
-  //   setSystemMessage("サブタスクが完了しましたね！次のステップについてAIに相談してみませんか？");
-  //   // ここでポップアップを表示するStateなどを設定することも可能
-  //   // ただし、今回はLLMボタンをクリックした時に表示する形式なので、直接モーダルは出さない
-  // };
-
   return (
     <Router>
       <div style={appContainerStyle}>
@@ -238,23 +216,12 @@ const App = () => {
           <div style={sidebarStyle}>
             <Sidebar />
           </div>
-
-          {/* メッセージ欄とLLMボタン */}
           
         </div>
 
         <div style={mainContentAreaStyle}>
           <Routes>
             <Route path="/" element={<WelcomePage />} />
-            {/* <Route path="/" element={
-              <div>
-                <h1>ようこそ！My Notes Appへ</h1>
-                <p>このアプリでは、メモの整理、日報保存、タスクリスト作成ができます。</p>
-                  <div style={{marginTop: "20px"}}>
-                    <button onClick={() => navigate("/daily-editor")}>メモ整理</button>
-                  </div>
-              </div>
-            } /> */}
             <Route
               path="/daily-editor"
               element={
@@ -286,59 +253,6 @@ const App = () => {
             {/* <Route path="/settings" element={<div>ああ</div>} /> */}
           </Routes>
         </div>
-        {/* 推薦タスクモーダル 
-        {showRecommendationModal && (
-          <TaskRecommendationModal
-            recommendedTasks={recommendedTasks}
-            onApply={applyRecommendedTasks}
-            onCancel={cancelRecommendation}
-          />
-        )}
-        */}
-        {/* ★追加：相談ポップアップ 
-        {showConsultationPopup && (
-          <div style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            backgroundColor: 'white',
-            padding: '25px',
-            borderRadius: '8px',
-            boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-            zIndex: 1001,
-            textAlign: 'center',
-            maxWidth: '350px',
-          }}>
-            <h3>AIに相談してみませんか？</h3>
-            <p>サブタスクが完了しましたね。次のステップについてAIが提案できます。</p>
-            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-around' }}>
-              <button
-                onClick={handleConsultationAccept}
-                style={{ padding: '8px 15px', fontSize: '1em', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
-              >
-                はい、相談する
-              </button>
-              <button
-                onClick={handleConsultationDecline}
-                style={{ padding: '8px 15px', fontSize: '1em', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
-              >
-                いいえ、結構です
-              </button>
-            </div>
-          </div>
-        )}
-        */}
-        {/* ポップアップ表示中は背景を暗くするオーバーレイ 
-        {showConsultationPopup && (
-          <div style={{
-            position: 'fixed',
-            top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 1000,
-          }} onClick={handleConsultationDecline}></div> // オーバーレイクリックで閉じる
-        )}
-        */}
       </div>
     </Router>
   );
