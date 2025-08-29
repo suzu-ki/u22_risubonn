@@ -1,0 +1,11 @@
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .markdown-content th,
+  .markdown-content td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  

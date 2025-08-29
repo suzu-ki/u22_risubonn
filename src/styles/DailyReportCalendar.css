@@ -1,0 +1,147 @@
+/* DailyReportCalendar.css */
+
+/* 全体コンテナ */
+.daily-report-container {
+  display: flex;
+  gap: 30px; /* カレンダーと日報エリアの間隔 */
+  padding: 20px;
+  background-color: #f0f2f5; /* 優しい背景色 */
+  font-family: 'Arial', sans-serif;
+  min-height: calc(100vh - 40px); /* 画面の高さからpaddingを引いた最小高さ */
+  align-items: flex-start; /* 上揃え */
+}
+
+/* カレンダーのコンテナスタイル */
+.report-calendar {
+  width: 400px; /* カレンダーの固定幅 */
+  max-width: 100%; /* レスポンシブ対応 */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* react-calendarのデフォルトスタイルを調整する場合（任意） */
+.react-calendar__tile--active {
+  background-color: #007bff !important;
+  color: white !important;
+}
+
+.react-calendar__tile--now {
+  background-color: #e6f7ff !important;
+  color: #007bff !important;
+}
+
+/* 日報表示エリア */
+.report-content-area {
+  flex: 1; /* 残りのスペースを全て占める */
+  min-width: 0; /* flexアイテムの最小幅設定 */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  overflow-y: auto; /* コンテンツがはみ出したらスクロール */
+  max-height: calc(100vh - 80px); /* カレンダーの高さなどに合わせて調整 */
+}
+
+.report-content-title {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 1.8em;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+/* Markdownコンテンツのスタイル（DailyEditor.cssと共通化している想定） */
+/* 必要であれば、DailyEditor.cssから主要なMarkdownスタイルをここにコピーするか、
+   共通のutility.cssなどにまとめることを検討してください。
+   以下は例として必要なものを一部抜粋。 */
+.markdown-content {
+  line-height: 1.6;
+  color: #333;
+  /* border, padding, backgroundなどは、
+     もしDailyEditor.cssの.markdown-contentで定義されていれば不要 */
+  /* border: 1px solid #e9e9e9;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); */
+}
+
+/* Markdown内の要素のスタイル（DailyEditor.cssのものを共通化している場合、不要） */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  color: #2c3e50;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content p {
+  margin-bottom: 1em;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 20px;
+  margin-bottom: 1em;
+}
+
+.markdown-content code {
+  background-color: #e0e0e0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown-content th {
+  background-color: #f2f2f2;
+}
+
+/* スクロールバーのスタイル（オプション） */
+.report-content-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.report-content-area::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.report-content-area::-webkit-scrollbar-thumb {
+  background: #c8c8c8;
+  border-radius: 10px;
+}
+
+.report-content-area::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

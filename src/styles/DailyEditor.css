@@ -1,0 +1,227 @@
+/* DailyEditor.css */
+
+/* 全体コンテナ */
+.daily-editor-container {
+  display: flex;
+  gap: 30px; /* カラム間のスペース */
+  height: 100vh; /* 画面いっぱいの高さ */
+  padding: 20px; /* 全体に余白 */
+  box-sizing: border-box; /* paddingを含めて幅を計算 */
+  background-color: #f0f2f5; /* 優しい背景色 */
+  font-family: 'Arial', sans-serif;
+}
+
+/* 各カラム（エディタ、まとめ）の共通スタイル */
+.editor-column,
+.summary-column {
+  flex: 1; /* 均等な幅を占める */
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* カラムの背景色 */
+  border-radius: 8px; /* 角を丸くする */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 影で立体感を出す */
+  padding: 20px;
+  overflow: hidden; /* 子要素のスクロールのために必要 */
+}
+
+.editor-column h2,
+.summary-column h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  /* text-align: center; */
+  font-size: 1.8em;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+/* スクロールエリア（エディタとまとめのコンテンツ部分） */
+.editor-scroll-area,
+.summary-scroll-area {
+  flex: 1; /* 残りのスペースを埋める */
+  overflow-y: auto; /* コンテンツがはみ出したらスクロール */
+  border: 1px solid #e0e0e0; /* 軽めのボーダー */
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+}
+
+/* エディタアイテム */
+.editor-item {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e9e9e9; /* 点線で区切る */
+}
+
+.editor-item:last-child {
+  border-bottom: none; /* 最後のアイテムの下線はなし */
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* タグ選択、小タスク選択ドロップダウン */
+.tag-select,
+.subtag-select {
+  width: auto; /* コンテンツに合わせて幅を調整 */
+  padding: 8px 12px;
+  padding-right: 30px; /* ここを調整: 右パディングを増やす */
+  margin-right: 10px;
+  margin-bottom: 15px; /* 下に少しスペース */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 0.95em;
+  cursor: pointer;
+  appearance: none; /* デフォルトの矢印を非表示 (必要に応じて) */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2069.4L154.2%20202.2c-2.4%202.4-5.2%203.8-8.2%203.8s-5.8-1.4-8.2-3.8L5.4%2069.4c-4.8-4.8-4.8-12.5%200-17.3s12.5-4.8%2017.3%200L146%20174.4l123.6-122.3c4.8-4.8%2012.5-4.8%2017.3%200s4.8%2012.5%200%2017.3z%22%2F%3E%3C%2Fsvg%3E'); /* カスタム矢印 */
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+}
+
+/* MarkdownEditor3 のスタイル（もしあれば） */
+/* これはMarkdownEditor3コンポーネント自身のCSSに記述するのが理想ですが、
+   もし外部からスタイルを当てたい場合はここに記述します。
+   例: .markdown-editor-container { border: 1px solid #ccc; } */
+
+/* ボタン共通スタイル */
+.add-editor-button,
+.save-summary-button {
+  background-color: #007bff; /* 青系のボタン */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 20px; /* 上にスペース */
+  align-self: flex-start; /* 左寄せ */
+  width: auto; /* コンテンツに合わせて幅を調整 */
+}
+
+.add-editor-button:hover,
+.save-summary-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px); /* 少し上に浮き上がらせる */
+}
+
+.save-summary-button {
+  align-self: center; /* 中央寄せ */
+  width: fit-content; /* 内容に合わせた幅 */
+  margin-bottom: 20px;
+}
+
+/* まとめエリアのヘディング */
+.summary-tag-group h3 {
+  color: #4a4a4a;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+  font-size: 1.5em;
+}
+
+.summary-tag-group h3:first-of-type {
+  margin-top: 0; /* 最初の大タグのh3は上にマージンを設けない */
+}
+
+.summary-subtag-group h4 {
+  color: #666;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  margin-left: 10px; /* 少しインデント */
+}
+
+/* Markdownコンテンツの表示エリア */
+.markdown-content {
+  margin-bottom: 15px;
+  border: 1px solid #e9e9e9;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  line-height: 1.6; /* 行の高さを調整して読みやすく */
+  color: #333; /* テキストの色 */
+}
+
+/* Markdown内の要素のスタイル（必要に応じて追加） */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  color: #2c3e50; /* 見出しの色 */
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content p {
+  margin-bottom: 1em;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 20px;
+  margin-bottom: 1em;
+}
+
+.markdown-content code {
+  background-color: #e0e0e0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background-color: #2d2d2d; /* highlight.js のテーマに合わせて調整 */
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto; /* コードがはみ出したらスクロール */
+  margin-bottom: 1em;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown-content th {
+  background-color: #f2f2f2;
+}
+
+/* スクロールバーのスタイル（オプション） */
+.editor-scroll-area::-webkit-scrollbar,
+.summary-scroll-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.editor-scroll-area::-webkit-scrollbar-track,
+.summary-scroll-area::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.editor-scroll-area::-webkit-scrollbar-thumb,
+.summary-scroll-area::-webkit-scrollbar-thumb {
+  background: #c8c8c8;
+  border-radius: 10px;
+}
+
+.editor-scroll-area::-webkit-scrollbar-thumb:hover,
+.summary-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

@@ -1,0 +1,293 @@
+/* TaskTable.css */
+/* TaskTable.css */
+
+/* 全体的なレイアウト */
+.task-management-container {
+  display: flex;
+  gap: 30px;
+  height: 100vh; /* 画面いっぱいの高さ */
+  width: 100%;
+  padding: 20px; /* 全体に少し余白 */
+  box-sizing: border-box; /* paddingを含めて幅を計算 */
+  background-color: #f4f7f6; /* 優しい背景色 */
+}
+
+.main-task-section,
+.completed-task-section,
+.subtask-detail-section {
+  flex: 1; /* 各セクションが均等な幅を占めるように */
+  min-width: 0;
+  overflow-y: auto; /* コンテンツがはみ出したらスクロール */
+  background-color: #ffffff; /* カードの背景色 */
+  border-radius: 8px; /* 角を丸くする */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 軽い影で立体感を出す */
+  padding: 20px;
+}
+
+.subtask-detail-section {
+  flex: 0.7; /* サブタスクセクションは少し狭く */
+}
+
+/* タスクグループ */
+.task-group {
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.group-title-input {
+  font-weight: bold;
+  font-size: 1.4em; /* 少し大きめのタイトル */
+  margin-bottom: 15px;
+  width: calc(100% - 20px); /* 親要素の幅に合わせて調整 */
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.completed-group-title {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+
+/* テーブルの共通スタイル */
+.task-table, .subtask-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.95em;
+}
+
+.task-table th, .subtask-table th {
+  background-color: #eef3f7; /* ヘッダーの背景色 */
+  color: #333;
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 2px solid #dde1e6;
+}
+
+.task-table td, .subtask-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.task-table tbody tr:hover {
+  background-color: #f9f9f9; /* ホバー時の背景色 */
+}
+
+.task-row.completed-task-row {
+  background-color: #f0f0f0; /* 完了済みタスクの背景色 */
+  color: #888;
+}
+
+.task-row.completed-task-row td {
+  text-decoration: line-through; /* 完了済みタスクのテキストに打ち消し線 */
+}
+
+
+/* 入力フィールド */
+.task-input {
+  width: calc(100% - 16px); /* paddingを考慮 */
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.task-input.date-input {
+  width: auto; /* 日付入力は幅を自動調整 */
+}
+
+.task-input.importance-input {
+  width: 60px; /* 重要度入力は狭めに */
+  text-align: center;
+}
+
+/* ボタン */
+.action-button, .add-button, .add-group-button {
+  background-color: #5c6bc0; /* メインカラー */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+  white-space: nowrap; /* テキストの折り返しを防ぐ */
+}
+
+.action-button:hover, .add-button:hover, .add-group-button:hover {
+  background-color: #4c5a9a; /* ホバー時の色 */
+}
+
+.add-group-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1em;
+}
+
+/* チェックボックス */
+.task-checkbox, .subtask-checkbox {
+  transform: scale(1.2); /* チェックボックスを少し大きく */
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+
+/* 追加タスク行 */
+.add-task-row td {
+  background-color: #f7fbfd; /* 追加行の背景色 */
+}
+
+.add-task-row p {
+  font-weight: bold;
+  color: #555;
+  margin: 0;
+}
+
+
+/* サブタスク詳細 */
+.subtask-detail-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.subtask-title {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.subtask-table {
+  margin-bottom: 20px;
+}
+
+.add-subtask-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.subtask-input {
+  flex-grow: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 情報メッセージ */
+.info-message {
+  text-align: center;
+  color: #777;
+  padding: 30px;
+  font-size: 1.1em;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+/* スクロールバーのスタイル（オプション） */
+.main-task-section::-webkit-scrollbar,
+.completed-task-section::-webkit-scrollbar,
+.subtask-detail-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-task-section::-webkit-scrollbar-track,
+.completed-task-section::-webkit-scrollbar-track,
+.subtask-detail-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.main-task-section::-webkit-scrollbar-thumb,
+.completed-task-section::-webkit-scrollbar-thumb,
+.subtask-detail-section::-webkit-scrollbar-thumb {
+  background: #c8c8c8;
+  border-radius: 10px;
+}
+
+.main-task-section::-webkit-scrollbar-thumb:hover,
+.completed-task-section::-webkit-scrollbar-thumb:hover,
+.subtask-detail-section::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ★ここから追加★ */
+.task-management-container {
+  /* display: flex; を削除またはコメントアウト */
+  flex-direction: column; /* 要素を縦に並べる */
+  /* gap, height, width, padding, background-color, box-sizing は維持 */
+  gap: 20px; /* 全体の要素間のスペース */
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f4f7f6;
+}
+
+/* 各セクションのflexプロパティを調整 */
+.main-task-section,
+.completed-task-section {
+  flex: 1; /* 縦方向のスペースを均等に使う */
+  min-height: 0; /* 最小高さを0に設定 */
+  overflow-y: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.subtask-detail-section {
+  flex: 0.7; /* 相対的なサイズを維持 */
+  min-height: 0; /* 最小高さを0に設定 */
+  overflow-y: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.task-view-toggle-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.toggle-button {
+  background-color: #e0e0e0;
+  color: #555;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #d0d0d0;
+}
+
+.toggle-button.active {
+  background-color: #5c6bc0; /* アクティブなボタンの色 */
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* ★ここまで追加★ */

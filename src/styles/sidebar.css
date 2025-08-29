@@ -1,0 +1,48 @@
+/* Sidebar.css */
+.sidebar-container {
+  width: 200px; /* サイドバーの幅 */
+  height: 100vh; /* 画面いっぱいの高さ */
+  background-color: #2c3e50; /* ダーク系の背景色 */
+  padding: 20px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* 影で立体感を出す */
+  display: flex;
+  flex-direction: column; /* ボタンを縦に並べる */
+  align-items: center; /* 中央揃え */
+  box-sizing: border-box; /* padding を高さに含める */
+}
+
+.sidebar-button {
+  background-color: transparent; /* 背景なし */
+  color: #ecf0f1; /* 明るいテキスト色 */
+  border: none;
+  padding: 15px 20px;
+  width: 80%; /* ボタンの幅 */
+  text-align: left; /* テキストを左揃え */
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* ホバー時のアニメーション */
+  margin-bottom: 10px; /* ボタン間のスペース */
+  border-radius: 5px; /* 角を丸くする */
+}
+
+.sidebar-button:hover {
+  background-color: #34495e; /* ホバー時の背景色 */
+  color: #ffffff; /* ホバー時のテキスト色 */
+}
+
+.sidebar-button:last-child {
+  margin-bottom: 0; /* 最後のボタンの下マージンはなし */
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.app-icon {
+  width: 180px;
+  /* height: 48px; */
+  object-fit: contain;
+}
