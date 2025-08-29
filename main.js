@@ -15,7 +15,7 @@ function createWindow() {
   });
 
   win.loadURL('http://localhost:3000');
-  win.webContents.openDevTools();
+  win.webContents.openDevTools(); //debugツール表示
 }
 
 app.whenReady().then(createWindow);
@@ -107,7 +107,72 @@ async function readExcelTasks() {
 }
 
 // ----- Excel 書き込み -----
+// ----- Excel 書き込み -----
 async function saveExcelTasks(middleTask, smallTask) {
+  await createEmptyExcel();
+
+  const wb = new ExcelJS.Workbook();
+  await wb.xlsx.readFile(efilePath);
+
+  const taskSheet = wb.getWorksheet("タスクリスト");
+  const subtaskSheet = wb.getWorksheet("サブタスクリスト");
+
+  // 中タスク追加・更新
+  if (middleTask) {
+    let found = false;
+    taskSheet.eachRow((row) => {
+      if (row.getCell(6).value === middleTask.id) {
+        row.getCell(1).value = middleTask.title;
+        row.getCell(2).value = middleTask.内容;
+        row.getCell(3).value = middleTask.期日;
+        row.getCell(4).value = middleTask.進捗;
+        row.getCell(5).value = middleTask.備考;
+        row.getCell(7).value = middleTask.重要度;
+        row.getCell(8).value = middleTask.check ? "TRUE" : "FALSE";
+        found = true;
+      }
+    });
+    if (!found) {
+      taskSheet.addRow([
+        middleTask.title,
+        middleTask.内容,
+        middleTask.期日,
+        middleTask.進捗,
+        middleTask.備考,
+        middleTask.id,
+        middleTask.重要度,
+        middleTask.check ? "TRUE" : "FALSE"
+      ]);
+    }
+  }
+
+  // 小タスク追加・更新
+  if (smallTask) {
+    let found = false;
+    console.log("aaa")
+    subtaskSheet.eachRow((row, rowNumber) => {
+      // 型を統一して比較
+      if (String(row.getCell(4).value) === String(smallTask.subid)) {
+        row.getCell(1).value = smallTask.id;
+        row.getCell(2).value = smallTask.内容;
+        row.getCell(3).value = Boolean(smallTask.完了); // TRUE/FALSE 確実に反映
+        found = true;
+      }
+    });
+    if (!found) {
+      subtaskSheet.addRow([
+        smallTask.id,
+        smallTask.内容,
+        Boolean(smallTask.完了),
+        smallTask.subid
+      ]);
+    }
+  }
+
+  await wb.xlsx.writeFile(efilePath);
+}
+
+async function saveExcelTasks_oo(middleTask, smallTask) {
   await createEmptyExcel();
 
   const wb = new ExcelJS.Workbook();
@@ -140,20 +205,38 @@ async function saveExcelTasks(middleTask, smallTask) {
   }
 
   // 小タスク追加・更新
+  // if (smallTask) {
+  //   let found = false;
+  //   subtaskSheet.eachRow((row, rowNumber) => {
+  //     if (row.getCell(4).value === smallTask.subid) {
+  //       row.getCell(1).value = smallTask.id;
+  //       row.getCell(2).value = smallTask.内容;
+  //       row.getCell(3).value = smallTask.完了;
+  //       found = true;
+  //     }
+  //   });
+  //   if (!found) {
+  //     subtaskSheet.addRow([smallTask.id, smallTask.内容, smallTask.完了, smallTask.subid]);
+  //   }
+  // }
+  // 小タスク追加・更新
   if (smallTask) {
     let found = false;
-    subtaskSheet.eachRow((row, rowNumber) => {
-      if (row.getCell(4).value === smallTask.subid) {
-        row.getCell(1).value = smallTask.id;
+    subtaskSheet.eachRow((row) => {
+      if (String(row.getCell(4).value) === String(smallTask.subid)) {
+        row.getCell(1).value = smallTask.id;      // 中タスクID
         row.getCell(2).value = smallTask.内容;
         row.getCell(3).value = smallTask.完了;
         found = true;
       }
     });
     if (!found) {
-      subtaskSheet.addRow([smallTask.id, smallTask.内容, smallTask.完了, smallTask.subid]);
+      subtaskSheet.addRow([
+        smallTask.id, smallTask.内容, smallTask.完了, smallTask.subid
+      ]);
     }
   }
+
 
   await wb.xlsx.writeFile(efilePath);
 }

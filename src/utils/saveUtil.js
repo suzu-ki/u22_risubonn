@@ -126,7 +126,7 @@ export async function saveMarkdownToFile4(groupedByTag) {
   // a.download = "summary.md";
   // a.click();
   // URL.revokeObjectURL(url);
-  //   const now = new Date();
+  const now = new Date();
   const yyyy = now.getFullYear();
   const mm = String(now.getMonth() + 1).padStart(2, "0");
   const dd = String(now.getDate()).padStart(2, "0");

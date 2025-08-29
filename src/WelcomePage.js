@@ -45,7 +45,7 @@ const WelcomePage = () => {
           marginTop: "40px",
         }}
       >
-        {featureButtons.map((btn) => (
+        {/* {featureButtons.map((btn) => (
             <div 
             style={{
                 width: "200px",
@@ -76,7 +76,35 @@ const WelcomePage = () => {
             />
             <p>{btn.summary}</p>
           </div>
-        ))}
+        ))} */}
+        {featureButtons.map((btn) => (
+  <div key={btn.label} style={{ width: "200px" }}>
+    <img
+      src={btn.icon}
+      alt={btn.label}
+      onClick={() => navigate(btn.path)}
+      style={{
+        width: "150px",
+        height: "150px",
+        borderRadius: "12px",
+        boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+        cursor: "pointer",
+        transition: "all 0.2s",
+        objectFit: "cover",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "scale(1.05)";
+        e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.2)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+      }}
+    />
+    <p>{btn.summary}</p>
+  </div>
+))}
+
       </div>
     
     <div>
