@@ -119,14 +119,26 @@ export async function saveMarkdownToFile4(groupedByTag) {
     }
   }
 
-  // ファイル保存部分は既存処理を流用
-  const blob = new Blob([combined], { type: "text/markdown" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "summary.md";
-  a.click();
-  URL.revokeObjectURL(url);
+  // const blob = new Blob([combined], { type: "text/markdown" });
+  // const url = URL.createObjectURL(blob);
+  // const a = document.createElement("a");
+  // a.href = url;
+  // a.download = "summary.md";
+  // a.click();
+  // URL.revokeObjectURL(url);
+  //   const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+  const dateStr = `${yyyy}-${mm}-${dd}`;
+  const mdfilename = `${dateStr}.md`;
+
+  try {
+    const savedPath = await window.electronAPI.saveFile3("diary", mdfilename, combined);
+    console.log("日報として保存しました:", savedPath);
+  } catch (err) {
+    console.error("保存エラー:", err);
+  }
 }
 
 

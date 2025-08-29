@@ -46,3 +46,11 @@
   /* height: 48px; */
   object-fit: contain;
 }
+
+.sidebar-button.active {
+  background-color: #b2b2b2; /* 選択中の背景色 */
+  color: #34495e; /* テキスト色 */
+  font-weight: bold;
+}
+
+
